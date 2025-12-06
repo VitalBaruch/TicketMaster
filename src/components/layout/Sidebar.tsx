@@ -1,8 +1,6 @@
 const items = [
   { label: "דף הבית", href: "/" },
-  { label: "אודות התבנית", href: "/about" },
-  { label: "טופס לדוגמה", href: "#form" },
-  { label: "טבלה לדוגמה", href: "#table" },
+  { label: "אירועים", href: "/events" }
 ];
 
 export function Sidebar() {
@@ -17,7 +15,7 @@ export function Sidebar() {
             <a
               key={item.href}
               href={item.href}
-              className="block rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-900 hover:text-white transition"
+              className="block rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-900 hover:text-emerald-300 transition"
             >
               {item.label}
             </a>

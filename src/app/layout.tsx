@@ -1,7 +1,9 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Vital Starter",
@@ -18,17 +20,18 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
-        <Navbar />
+        <AuthProvider>
+          <Navbar />
 
-        {/* אזור התוכן + הסיידבר */}
-        <div className="flex flex-1 max-w-6xl mx-auto w-full">
-          <Sidebar />
-          <main className="flex-1 px-4 py-8">{children}</main>
-        </div>
+          <div className="flex flex-1 max-w-6xl mx-auto w-full">
+            <Sidebar />
+            <main className="flex-1 px-4 py-8">{children}</main>
+          </div>
 
-        <footer className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-          © {YEAR} ויטל — תבנית התחלה
-        </footer>
+          <footer className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+            © {YEAR} ויטל — כל הזכויות שמורות.
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );
