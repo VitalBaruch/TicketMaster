@@ -1,5 +1,6 @@
 "use client";
 
+import { CROLE } from "@/generated/prisma/enums";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export function AuthStatus() {
@@ -16,9 +17,6 @@ export function AuthStatus() {
   if (!session?.user) {
     return (
       <div className="flex items-center gap-4">
-        <a href="/register" className="text-slate-300 hover:text-white transition">
-          הירשם
-        </a>
         <button
           className="
               rounded-full px-4 py-1.5
@@ -42,8 +40,14 @@ export function AuthStatus() {
       <a href="/tickets/my" className="hover:text-emerald-300 hover:scale-105 transition duration-200">
           הכרטיסים שלי
         </a>
+        { session.user.role === CROLE.ADMIN &&
+          <a href="/tickets/manage" className="hover:text-blue-500 hover:scale-105 transition duration-200">
+          ניהול כרטיסים   
+          </a>
+        }
       <div className="flex items-center gap-2 text-xs text-slate-300">
         <span>שלום, {session.user.name ?? session.user.email}</span>
+        <span>הרשאות: {session.user.role}</span>
         <button
           className="text-xs text-slate-400 hover:text-red-400 transition-colors cursor-pointer"
           onClick={() => signOut({ callbackUrl: "/" })}

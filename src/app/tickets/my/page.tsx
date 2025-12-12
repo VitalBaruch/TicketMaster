@@ -1,5 +1,5 @@
 // src/app/tickets/my/page.tsx
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { events } from "@/data/events";
 import { baseTickets } from "@/data/tickets"
